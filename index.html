@@ -24,40 +24,32 @@
     </script>
 </head>
 
-<header class="position-fixed fixed-top"  style="background-color:#10394E; padding-top: 70px;">
-    <div class="logo-container">
+<header class="position-fixed fixed-top" style="background-color: #10597D; display: flex; align-items: center; gap: 10px; padding: 5px 15px; justify-self: left; width:100%;">
+    <div class="logo-container" style="display: flex; align-items: center;">
         <a href="https://dockerlabs.es" target="_blank">
-            <img src="https://dockerlabs.es/static/images/logos/logo.png" alt="DockerLabs" width="60" height="55">
+            <img src="https://dockerlabs.es/static/images/logos/logo.png" alt="DockerLabs" width="60" height="55" style="display: block;">
         </a>
     </div>
-    <div class="raiola-container">
-        <a href="https://raiolanetworks.com/landing/hosting-elpinguinodemario/?utm_medium=affiliate&utm_source=5855&utm_campaign=Afiliados"
-            target="_blank">
-            <img src="https://dockerlabs.es/static/images/raiola.png" alt="Raiola Networks" width="290" height="50">
-        </a>
-    </div>
-    <h1><a href="https://ko-fi.com/elpinguinodemario" target="_blank" id="dockerlabs-link"
-            style="color: #fff; text-decoration: none;">DockerLabs</a></h1>
+    <h1 style="margin: 0;">
+        <a href="https://ko-fi.com/elpinguinodemario" target="_blank" id="dockerlabs-link"
+           style="color: #fff; text-decoration: none;">DockerLabs</a>
+    </h1>
 </header>
 
-<body style="background-color:#10597D">
+
+<body style="background-color:#10597D; margin-top: 20px;">
 
 
     <div class="container">
         <div class="header row">
             <div class="col-xxl-6 ">
                 <input type="text" id="search" class="form-control-sm" placeholder="Busca algo...">
-                <a href="https://elrincondelhacker.es" target="_blank"><button id="academia">Academia🧠</button></a>
-                <button id="ranking" onclick="ranking()">Tutoriales👑</button>
-                <button id="ranking" onclick="rankingautores()">Autores👑</button>
-		<a href="/api-instrucciones"><button id="instrucciones">API</button></a>                
-            </div>
+                </div>
             <div class="col-xxl-6 right-buttons text-center" id="difficulty-filter">
                 <button id="botonmuyfacil" onclick="botonmuyfacil()">Muy Fácil</button>
                 <button id="botonfacil" onclick="botonfacil()">Fácil</button>
                 <button id="botonmedio" onclick="botonmedio()">Medio</button>
                 <button id="botondificil" onclick="botondificil()">Difícil</button>
-                <button id="botontodos" class="selected" onclick="botontodos()">Todos</button>
             </div>
         </div>
 
