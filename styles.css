@@ -1,0 +1,620 @@
+@import url('https://fonts.googleapis.com/css2?famil:Fira+Code:wght@400;700&displa:swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+    color: #b7cfdd;
+    font-family: 'Fira Code', Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding-top:71px;
+}
+
+header {
+    color: #fff;
+    text-align: center;
+    padding: 8px 16px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.header-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+}
+
+.header-buttons .left-buttons,
+.header-buttons .right-buttons {
+    display: flex;
+}
+
+.header-buttons button {
+    background: #333;
+    color: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+    padding: 8px 16px;
+    font-weight: bold;
+    text-align: center;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+    font-family: 'Fira Code', monospace; 
+}
+
+.header-buttons .left-buttons button {
+    margin-right: 16px; 
+}
+
+.header-buttons .right-buttons button {
+    margin-left: 8px; 
+}
+
+.header-buttons .right-buttons #botonmuyfacil { background: #36797e; }
+.header-buttons .right-buttons #botonfacil { background: #6da52d; }
+.header-buttons .right-buttons #botonmedio { background: #c79349; }
+.header-buttons .right-buttons #botondificil { background: #b9332a; }
+.header-buttons .right-buttons #botontodos { background: #535353; }
+
+.header-buttons button:hover {
+    background: #8db4ca;
+    color: #333;
+    border-color: #333;
+}
+
+.logo-container { margin-right: 8px; } /* Reducido */
+.raiola-container { margin-left: 8px; } /* Reducido */
+
+header h1 {
+    font-size: 24px; /* Reducido */
+    margin: 0;
+    flex: 1;
+    text-align: center;
+}
+
+.canal {
+    padding: 0;
+}
+
+.canal p {
+    color: #fff;
+    font-size: 14px; /* Reducido */
+    line-height: 1.4; /* Reducido */
+    margin: 8px 0; /* Reducido */
+}
+
+.canal a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.canal a:hover { text-decoration: underline; }
+
+.container {
+
+    padding-bottom: 100px; /* Reducido */
+}
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Reducido */
+}
+
+.header input,
+.header select,
+.header button {
+    padding: 8px; /* Reducido */
+    margin-right: 8px; /* Reducido */
+    border: 1px solid #ccc;
+    border-radius: 6px; /* Reducido */
+}
+
+.header button:hover { background: #555; }
+
+#instrucciones,
+#academia,
+#ranking,
+#agradecimientos,
+#botonmuyfacil,
+#botonfacil,
+#botonmedio,
+#botondificil,
+#botontodos {
+    background: #333538;
+    color: #fff;
+    border: 2px solid #c0c0c0;
+    border-radius: 6px; /* Reducido */
+    cursor: pointer;
+    padding: 10px 10px; /* Reducido */
+    font-weight: bold;
+    text-align: center;
+    font-size: 12px; /* Reducido */
+    text-transform: uppercase;
+    transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Fira Code', monospace; /* Aplicar Fira Code a todos los botones */
+}
+
+#botonmuyfacil { background: #36797e; }
+#botonfacil { background: #6da52d; }
+#botonmedio { background: #c79349; }
+#botondificil { background: #b9332a; }
+
+#instrucciones:hover,
+#academia:hover,
+#ranking:hover,
+#agradecimientos:hover,
+#botonmuyfacil:hover,
+#botonmedio:hover,
+#botondificil:hover,
+#botonfacil:hover,
+#botontodos:hover {
+    background: #fff;
+    color: #333;
+    border-color: #333;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px;
+    justify-content: center;
+}
+
+.columnaizquierda, .columnaderecha {
+    width: 100%;
+    max-width: 600px;
+}
+
+.item {
+    background: rgba(20, 20, 30, 0.9);
+    border: 1px solid rgba(135, 187, 194, 0.3);
+    backdrop-filter: blur(8px);
+    padding: 16px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    text-align: left;
+    text-decoration: none;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.item:hover {
+    transform: scale(1.02);
+    background: #2c2c44;
+    border-color: #b0e0e6;
+}
+
+.item span {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item .badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    color: #fff;
+    font-weight: 500;
+    width: fit-content;
+    text-align: center;
+    text-transform: uppercase;
+    margin-left: auto;
+}
+
+.item .badge.muy-facil { background: #3b8c89; }
+.item .badge.facil     { background: #8bc34a; }
+.item .badge.medio     { background: #f0a43c; }
+.item .badge.dificil   { background: #e74c3c; }
+
+.actions.icon-container {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+button:hover {
+    color: #b0e0e6;
+}
+
+.upload {
+    font-size: 1em;
+    padding: 6px 12px;
+    background: #3a3a5a;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.upload:hover {
+    background: #4a4a6a;
+}.actions {
+    display: flex;
+    gap: 8px; /* Reducido */
+    align-items: center;
+    margin-left: 8px; /* Reducido */
+}
+
+.actions button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px; /* Reducido */
+    margin-left: 8px; /* Reducido */
+    font-family: 'Fira Code', monospace; /* Aplicar Fira Code a los botones en acciones */
+}
+
+.actions button:hover { color: #bbb; }
+
+footer {
+    background: transparent; /* Elimina el fondo del footer */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 12px 0;
+    text-align: center;
+    z-index: 2; /* AsegÃºrate de que el footer estÃ© encima de las olas */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 75%;
+    position: relative;
+    z-index: 3; /* AsegÃºrate de que el contenido estÃ© sobre las olas */
+}
+
+.footer-content p { 
+    margin: 0; 
+}
+
+.footer-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.footer-icon i {
+    font-size: 1.8em;
+    color: #fff;
+}
+
+.footer-icon:hover i { 
+    color: #ccc; 
+}
+
+.footer-link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-link:hover { 
+    color: #ccc; 
+}
+
+/* Estilos para el contenedor de las olas */
+.wave-container {
+    position: fixed; /* Fijo para que siempre estÃ© al fondo */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px; /* Ajusta la altura de las olas */
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Efecto de olas */
+.wave {
+    position: absolute;
+    left: 50%;
+    width: 200%;
+    height: 100px;
+    background: linear-gradient(to right, rgba(20, 21, 28, 0.893) 0%, rgba(26, 28, 45, 0.938) 50%, rgb(26, 33, 48) 100%);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    animation: wave 5s linear infinite; /* AnimaciÃ³n mÃ¡s rÃ¡pida */
+}
+
+.wave.wave2 {
+    height: 120px;
+    background: linear-gradient(to right, rgba(20, 23, 40, 0.982) 0%, rgba(20, 31, 44, 0.776) 50%, rgba(24, 38, 71, 0.2) 100%);
+    animation: wave 5s linear infinite;
+}
+
+/* AnimaciÃ³n de olas */
+@keyframes wave {
+    0% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(12px);
+    }
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Consultas de medios para dispositivos mÃ³viles */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+
+    .logo-container,
+    header h1 {
+        margin: 0;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+
+    .list {
+        flex-direction: column;
+    }
+
+    .columnaizquierda,
+    .columnaderecha {
+        width: 100%;
+    }
+
+    .actions {
+        gap: 3px;
+    }
+
+    .actions button {
+        margin-left: 3px;
+    }
+
+    .footer-icons {
+        gap: 10px;
+    }
+
+    .footer-icon i {
+        font-size: 1.5em;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        width: 90%;
+        padding: 2px 0;
+    }
+
+    .footer-content p {
+        font-size: 12px;
+    }
+
+    .copyright {
+        display: none;
+    }
+
+    .raiola-container {
+        display: none;
+    }
+
+    .container {
+        padding-bottom: 100px;
+        
+    }
+
+    .item .size {
+        display: inline-block;
+        font-size: 14px;
+    }
+
+
+
+    /* AlineaciÃ³n de los botones de dificultad en una fila */
+    .header-buttons .right-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    
+}
+
+.zoom-effect {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.zoom-effect:hover {
+    transform: scale(1.1);
+}
+
+
+.modal-close-button:active,
+.modal-close-button {
+    display:block;
+    width:25px;height:25px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.3s, transform 0.3s;
+    transform: scale(1);
+}
+
+.modal-close-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}       
+div.popup h1,
+div.popup h2 {
+    margin-top: 15px;
+    font-size: 32px;
+}
+
+input#search {
+    max-width: 130px;
+}
+@media (max-width: 768px) {
+    body {
+        padding-top:165px;
+    }
+    input#search {
+        max-width: 100%;
+        width: 100%;
+    }
+    header h1 {
+        margin-bottom: 10px;
+    }
+    div.popup {
+        min-width:85%;
+    }
+    .columnaizquierda > div.item:last-child { margin-bottom: 0px!important;}
+
+}
+#difficulty-filter > button {
+    border-color:#2b2b3f;
+}
+#difficulty-filter > button.selected {
+    border-color:#b7cfdd;
+}
+
+div.header.row > div > * {
+    margin-top: 15px;
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 0;
+    }
+}
+.download
+{
+    display: none;
+}
+
+.marine-background {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #10597D 0%, #0b3c5d 50%, #062c47 100%);
+    background-size: 400% 400%;
+    animation: marineFlow 15s ease infinite;
+    position: relative;
+    z-index: 0;
+}
+
+@keyframes marineFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+/* Header marino */
+.marine-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to bottom, #0b3c5d, #10597D);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    z-index: 999;
+    padding-left: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+/* Contenedor del logo y texto */
+.logo-container {
+    display: flex;
+    align-items: center;
+    z-index: 2;
+}
+
+/* Título estilizado */
+.marine-title {
+    margin-left: 20px;
+    font-family: 'Pacifico', cursive;
+    font-size: 28px;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.marine-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Efecto de olas */
+.wave3 {
+    position: absolute;
+    top: 60px; /* justo debajo del contenido */
+    left: 50%;
+    width: 200%;
+    height: 80px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.15) 0%, rgba(173, 216, 230, 0.1) 50%, rgba(0, 0, 255, 0.05) 100%);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    animation: wave 5s linear infinite;
+    z-index: 1;
+}
+
+.wave3.wave2 {
+    top: 70px;
+    height: 100px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(0, 191, 255, 0.08), rgba(0, 0, 128, 0.05));
+    animation: wave 7s linear infinite;
+}
+
+/* Animación suave de olas */
+@keyframes wave {
+    0% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+    100% { transform: translateX(-50%) translateY(0); }
+}

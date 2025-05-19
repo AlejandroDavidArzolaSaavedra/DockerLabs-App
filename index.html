@@ -5,48 +5,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DockerLabs es una plataforma de laboratorios de ciberseguridad donde puedes aprender y practicar hacking ético.">
+    <meta name="keywords" content="DockerLabs, ciberseguridad, hacking ético, laboratorios, aprendizaje">
+    <meta name="author" content="El Pingüino de Mario">
+    <meta name="theme-color" content="#10597D">
+    <meta name="google-site-verification" content="G-ZBED41BLPR">
     <title>DockerLabs</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="./logo.png" type="image/png">    
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.trim() === 'Descripción') {
+                button.innerHTML = '<i class="bi bi-file-earmark-text" style="font-size:20px;"></i>';
+            }
+        });
 
-    <link rel="stylesheet" href="https://dockerlabs.es//static/styles.css">
 
-    <link rel="icon" href="https://dockerlabs.es/static/images/logos/logo.png" type="image/png">
+        document.querySelectorAll('i.bi-cloud-arrow-up-fill, i.bi-cloud-arrow-down-fill').forEach(icon => {
+            const button = icon.closest('button');
+            if (button) {
+                button.style.display = 'none';
+            }
+        });
+
+
+        document.querySelectorAll("button").forEach(button => {
+            const icono = button.querySelector("i.bi.bi-book");
+            if (icono) {
+                button.style.display = "none";
+            }
+        });
+
+    });
+
+</script>
+
+<body class="marine-background">
+
     
-
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-ZBED41BLPR');
-    </script>
-</head>
-
-<style>
-    @media (max-width: 768px) {
-        body {
-            padding-top: 0;
-        }
-    }
-</style>
-
-
-<body style="background-color:#10597D; ">
-
-    
-<header class="position-fixed fixed-top" style="background-color: #10597D; display: flex; align-items: center; gap: 10px; justify-self: left; width:100%;justify-content: flex-start; align-items: flex-start;">
-    <div class="logo-container" style="display: flex; align-items: center;">
+<header class="marine-header">
+    <div class="logo-container">
         <a href="https://dockerlabs.es" target="_blank">
-            <img src="https://dockerlabs.es/static/images/logos/logo.png" alt="DockerLabs" width="60" height="55" style="display: block;">
+            <img src="https://dockerlabs.es/static/images/logos/logo.png" alt="DockerLabs" width="60" height="55">
         </a>
-        <h1 style="margin-left: 20px;">
-        <a href="https://ko-fi.com/elpinguinodemario" target="_blank" id="dockerlabs-link"
-           style="color: #fff; text-decoration: none;">DockerLabs</a>
-    </h1>
+        <h1 class="marine-title">
+            <a href="https://ko-fi.com/elpinguinodemario" target="_blank" id="dockerlabs-link">DockerLabs</a>
+        </h1>
     </div>
+    <div class="wave3 wave1"></div>
+    <div class="wave3 wave2"></div>
 </header>
+
 
     <div class="container" style="padding-top: 100px; width: 100%;">
         <div class="header row">
@@ -2483,14 +2496,376 @@
         </div>
     </div>
 
-    <script src="https://dockerlabs.es/static/script.js"></script>
-    <script src="https://dockerlabs.es/static/presentacionmaquina.js"></script>
-    <script src="https://dockerlabs.es/static/descripciones.js"></script>
-    <script src="https://dockerlabs.es/static/writeups.js"></script>
-    <script src="https://dockerlabs.es/static/ranking.js"></script>
-    <script src="https://dockerlabs.es/static/subirwriteup.js"></script>
-    <script src="https://dockerlabs.es/static/agradecimientos.js"></script>
+
+
+<!-- SCRIPT script.js-->
+<script>
+function filterList() {
+    const searchQuery = document.getElementById('search').value.toLowerCase();
+    const filter = document.getElementById('filter').value;
+    const items = document.querySelectorAll('.item');
+
+    items.forEach(item => {
+        const itemName = item.querySelector('span').textContent.toLowerCase();
+        const itemDifficulty = item.classList.contains(filter) || filter === 'todos';
+
+        if (itemName.includes(searchQuery) && itemDifficulty) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+function botonmuyfacil() {
+    const searchQuery = document.getElementById('search').value.toLowerCase();
+    const filter = 'muy-facil'; 
+    const items = document.querySelectorAll('.item');
+
+    items.forEach(item => {
+        const itemName = item.querySelector('span').textContent.toLowerCase();
+        const itemDifficulty = item.classList.contains(filter) || filter === 'todos';
+
+        if (itemName.includes(searchQuery) && itemDifficulty) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+function botonfacil() {
+    const searchQuery = document.getElementById('search').value.toLowerCase();
+    const filter = 'facil'; 
+    const items = document.querySelectorAll('.item');
+
+    items.forEach(item => {
+        const itemName = item.querySelector('span').textContent.toLowerCase();
+        const itemDifficulty = item.classList.contains(filter) || filter === 'todos';
+
+        if (itemName.includes(searchQuery) && itemDifficulty) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+
+
+function botonmedio() {
+    const searchQuery = document.getElementById('search').value.toLowerCase();
+    const filter = 'medio';  
+    const items = document.querySelectorAll('.item');
+
+    items.forEach(item => {
+        const itemName = item.querySelector('span').textContent.toLowerCase();
+        const itemDifficulty = item.classList.contains(filter) || filter === 'todos';
+
+        if (itemName.includes(searchQuery) && itemDifficulty) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+
+
+function botondificil() {
+    const searchQuery = document.getElementById('search').value.toLowerCase();
+    const filter = 'dificil'; 
+    const items = document.querySelectorAll('.item');
+
+    items.forEach(item => {
+        const itemName = item.querySelector('span').textContent.toLowerCase();
+        const itemDifficulty = item.classList.contains(filter) || filter === 'todos';
+
+        if (itemName.includes(searchQuery) && itemDifficulty) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+function botontodos() {
+    const searchQuery = document.getElementById('search').value.toLowerCase();
+    const filter = 'todos';  
+    const items = document.querySelectorAll('.item');
+
+    items.forEach(item => {
+        const itemName = item.querySelector('span').textContent.toLowerCase();
+        const itemDifficulty = item.classList.contains(filter) || filter === 'todos';
+
+        if (itemName.includes(searchQuery) && itemDifficulty) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+</script>
+
+<!-- Script presentacion maquina -->
+
+<script>
+
+    function presentacion(nombre, dificultad, color, autor_nombre, autor_enlace, fecha, imagen) {
+    // Crear el contenedor del overlay
+    var overlayDiv = document.createElement('div');
+    overlayDiv.className = 'overlay';
+    overlayDiv.style.position = 'fixed';
+    overlayDiv.style.top = '0';
+    overlayDiv.style.left = '0';
+    overlayDiv.style.width = '100%';
+    overlayDiv.style.height = '100%';
+    overlayDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    overlayDiv.style.zIndex = '9998';
+    overlayDiv.style.opacity = '0';
+    overlayDiv.style.transition = 'opacity 0.3s ease';
+
+    // Crear el contenedor del popup
+    var popupDiv = document.createElement('div');
+    popupDiv.className = 'popup';
+    popupDiv.style.backgroundColor = '#171724';
+    popupDiv.style.color = '#ffffff';
+    popupDiv.style.border = '2px solid #b7cfdd';
+    popupDiv.style.borderRadius = '10px';
+    popupDiv.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+    popupDiv.style.position = 'absolute';
+    popupDiv.style.left = '50%';
+    popupDiv.style.transform = 'translateX(-50%)';
+    popupDiv.style.zIndex = '9999';
+    popupDiv.style.padding = '20px';
+    popupDiv.style.textAlign = 'center';
+    popupDiv.style.overflowY = 'auto';
+    popupDiv.style.transition = 'opacity 0.3s ease, transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+    popupDiv.style.opacity = '0';
+    popupDiv.style.fontFamily = 'Fira Code, Arial, sans-serif';
+
+    // Ajustar la posiciÃ³n del popup en funciÃ³n del scroll actual
+    var scrollY = window.scrollY;
+    popupDiv.style.top = `${scrollY + window.innerHeight / 2}px`;
+
+    // Crear el botÃ³n de cierre
+    var closeButton = document.createElement('button');
+    closeButton.innerHTML = '&times;';
+    closeButton.classList.add('modal-close-button');
+    closeButton.addEventListener('click', function() {
+        closePopup();
+    });
+
+    // Crear el contenedor del contenido
+    var contentDiv = document.createElement('div');
+    contentDiv.style.display = 'flex';
+    contentDiv.style.flexDirection = 'column';
+    contentDiv.style.alignItems = 'center';
+
+    // Crear el tÃ­tulo
+    var titulo = document.createElement('h1');
+    titulo.textContent = nombre;
+    titulo.style.width = '100%';
+    titulo.style.textAlign = 'center';
+    titulo.style.marginBottom = '10px';
+    titulo.style.fontFamily = 'Fira Code, Arial, sans-serif';
+
+    // Crear el contenedor de la imagen y la informaciÃ³n
+    var infoContainer = document.createElement('div');
+    infoContainer.style.display = 'flex';
+    infoContainer.style.width = '100%';
+    infoContainer.style.flexDirection = 'column';
+    infoContainer.style.alignItems = 'center';
+    infoContainer.style.marginTop = '10px';
+
+    // Obtener la URL base de Flask para imÃ¡genes
+    var imagenUrl = "/static/images/" + imagen;
     
+    // Crear la imagen
+    var imagenElem = document.createElement('img');
+    imagenElem.src = imagenUrl;
+    imagenElem.alt = 'DockerLabs';
+    imagenElem.style.width = '150px';
+    imagenElem.style.height = '150px';
+    imagenElem.style.marginBottom = '20px';
+
+
+    // Crear la informaciÃ³n
+    var infoDiv = document.createElement('div');
+    infoDiv.innerHTML = `
+        <p style="font-size: 20px; font-family: Fira Code, Arial, sans-serif;"><strong>Autor:</strong> <a href="${autor_enlace}" target="_blank" style="color: white; text-decoration: none;">${autor_nombre}</a></p>
+        <p style="font-size: 20px; font-family: Fira Code, Arial, sans-serif;"><strong>Dificultad:</strong> <span style="background-color: ${color}; padding: 5px; border-radius: 5px;">${dificultad}</span></p>
+        <p style="font-size: 20px; font-family: Fira Code, Arial, sans-serif;"><strong>Fecha de creaciÃ³n:</strong> ${fecha}</p>
+    `;
+
+    // AÃ±adir la imagen y la informaciÃ³n al contenedor
+    infoContainer.appendChild(imagenElem);
+    infoContainer.appendChild(infoDiv);
+
+    // AÃ±adir el tÃ­tulo y el contenedor de informaciÃ³n al contenido
+    contentDiv.appendChild(titulo);
+    contentDiv.appendChild(infoContainer);
+    popupDiv.appendChild(contentDiv);
+    popupDiv.appendChild(closeButton);
+
+    // AÃ±adir el popup y el overlay al body
+    document.body.appendChild(overlayDiv);
+    document.body.appendChild(popupDiv);
+
+    // Ajustar el tamaÃ±o del popup al cargar la pÃ¡gina y al redimensionar la ventana
+    ajustarPopup(popupDiv, infoContainer, imagenElem, infoDiv);
+    window.addEventListener('resize', function() {
+        ajustarPopup(popupDiv, infoContainer, imagenElem, infoDiv);
+    });
+
+    // FunciÃ³n para cerrar el popup
+    function closePopup() {
+        popupDiv.style.opacity = '0';
+        popupDiv.style.transform = 'translate(-50%, -60%)';
+        overlayDiv.style.opacity = '0';
+        setTimeout(function() {
+            document.body.removeChild(popupDiv);
+            document.body.removeChild(overlayDiv);
+        }, 300);
+    }
+
+    // Mostrar el popup y el overlay
+    setTimeout(function() {
+        popupDiv.style.opacity = '1';
+        popupDiv.style.transform = 'translate(-50%, -50%)';
+        overlayDiv.style.opacity = '1';
+    }, 10);
+
+    // Cerrar el popup si se hace clic en el overlay
+    overlayDiv.addEventListener('click', function(event) {
+        if (event.target === overlayDiv) {
+            closePopup();
+        }
+    });
+}
+
+// FunciÃ³n para ajustar el diseÃ±o del popup en funciÃ³n del tamaÃ±o de la pantalla
+function ajustarPopup(popupDiv, infoContainer, imagenElem, infoDiv) {
+    var width = window.innerWidth;
+    if (width <= 600) { // Ajustar para pantallas pequeÃ±as
+        popupDiv.style.width = '85%';
+        popupDiv.style.height = '60%';
+        popupDiv.style.padding = '10px';
+        popupDiv.style.fontSize = '14px';
+        infoContainer.style.flexDirection = 'column';
+        infoContainer.style.alignItems = 'center';
+        imagenElem.style.marginBottom = '20px';
+        infoDiv.style.marginLeft = '0';
+    } else {
+        popupDiv.style.width = '550px';  // Hacer el contenedor mÃ¡s estrecho
+        popupDiv.style.height = '300px';
+        popupDiv.style.padding = '20px';
+        popupDiv.style.fontSize = '16px';
+        infoContainer.style.flexDirection = 'row';
+        infoContainer.style.alignItems = 'center';
+        imagenElem.style.marginBottom = '0';
+        infoDiv.style.marginLeft = '20px';
+    }
+}
+</script>
+
+
+<!--  Script para las descripciones de la maquina-->
+
+<script>
+function descripcion(nombre, descripcionTexto) {
+    // Crear el contenedor del overlay
+    var overlayDiv = document.createElement('div');
+    overlayDiv.className = 'overlay';
+    overlayDiv.style.position = 'fixed';
+    overlayDiv.style.top = '0';
+    overlayDiv.style.left = '0';
+    overlayDiv.style.width = '100%';
+    overlayDiv.style.height = '100%';
+    overlayDiv.style.background = 'rgba(0, 0, 0, 0.5)';
+    overlayDiv.style.zIndex = '9998';
+    overlayDiv.style.opacity = '0';
+    overlayDiv.style.transition = 'opacity 0.3s ease';
+
+    // Crear el contenedor del popup
+    var popupDiv = document.createElement('div');
+    popupDiv.className = 'popup';
+    popupDiv.style.width = '360px';
+    popupDiv.style.backgroundColor = '#101016';
+    popupDiv.style.color = '#ffffff';
+    popupDiv.style.border = '1px solid #cccccc';
+    popupDiv.style.borderRadius = '10px';
+    popupDiv.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+    popupDiv.style.position = 'fixed';
+    popupDiv.style.top = '50%';
+    popupDiv.style.left = '50%';
+    popupDiv.style.transform = 'translate(-50%, -50%)';
+    popupDiv.style.zIndex = '9999';
+    popupDiv.style.padding = '20px';
+    popupDiv.style.textAlign = 'center';
+    popupDiv.style.transition = 'opacity 0.3s ease, transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+    popupDiv.style.opacity = '0';
+    popupDiv.style.transform = 'translate(-50%, -60%)';
+
+    // Crear el botÃƒÂ³n de cierre
+    var closeButton = document.createElement('button');
+    closeButton.classList.add('modal-close-button');
+    closeButton.innerHTML = '&times;';
+    closeButton.style.position = 'absolute';
+    closeButton.style.top = '10px';
+    closeButton.style.right = '15px';
+    closeButton.style.background = 'none';
+    closeButton.style.border = 'none';
+    closeButton.style.color = '#ffffff';
+    closeButton.style.fontSize = '24px';
+    closeButton.style.cursor = 'pointer';
+    closeButton.addEventListener('click', function() {
+        closePopup();
+    });
+
+    // Crear el contenido del popup con la descripciÃƒÂ³n pasada como parÃƒÂ¡metro
+    var contenidoPopup = `
+        <h2 style="margin-bottom: 10px;">Aprendizaje en ${nombre}</h2>
+        <p style="font-size: 14px; color: #ccc;">${descripcionTexto}</p>
+    `;
+
+    popupDiv.innerHTML = contenidoPopup;
+    popupDiv.appendChild(closeButton);
+    document.body.appendChild(overlayDiv);
+    document.body.appendChild(popupDiv);
+
+    // Mostrar el popup y el overlay
+    setTimeout(function() {
+        popupDiv.style.opacity = '1';
+        popupDiv.style.transform = 'translate(-50%, -50%)';
+        overlayDiv.style.opacity = '1';
+    }, 10);
+
+    // Cerrar el popup si se hace clic en el overlay
+    overlayDiv.addEventListener('click', function(event) {
+        if (event.target === overlayDiv) {
+            closePopup();
+        }
+    });
+
+    // FunciÃƒÂ³n para cerrar el popup
+    function closePopup() {
+        popupDiv.style.opacity = '0';
+        popupDiv.style.transform = 'translate(-50%, -60%)';
+        overlayDiv.style.opacity = '0';
+        setTimeout(function() {
+            document.body.removeChild(popupDiv);
+            document.body.removeChild(overlayDiv);
+        }, 300);
+    }
+}
+
+
+</script>
+
+
+
 
 
     <script>
@@ -2536,16 +2911,13 @@
             updateButtonCount('botondificil', 'dificil');
         }
 
-        function botontodos() {
-            updateButtonCount('botontodos', 'todos');
-        }
+   
 
         function updateAllButtonCounts() {
             botonmuyfacil();
             botonfacil();
             botonmedio();
             botondificil();
-            botontodos();
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -2561,25 +2933,8 @@
 
 <footer>
     <div class="footer-content">
-        <p class="copyright"><i class="bi bi-c-circle"></i> Copyright DockerLabs</p>
-        <div class="footer-icons">
-            <a href="https://discord.gg/dD3yVejBUR" class="footer-icon" target="_blank">
-                <i class="bi bi-discord"></i>
-            </a>
-            <a href="https://es.linkedin.com/in/maalfer1" class="footer-icon" target="_blank">
-                <i class="bi bi-linkedin"></i>
-            </a>
-            <a href="https://t.me/elpinguinohack" class="footer-icon" target="_blank">
-                <i class="bi bi-telegram"></i>
-            </a>
-        </div>
-        <p>
-            <a href="https://www.youtube.com/@ElPinguinoDeMario" class="footer-link" target="_blank">
-                By El Pingüino de Mario 🐧
-            </a>
-        </p>
     </div>
-    <div class="wave-container">
+    <div class="wave-container" style=" height: 5rem;">
         <div class="wave wave1"  style="background-color:#10597D"></div>
         <div class="wave wave2" style="background-color:#10597D"></div>
     </div>
