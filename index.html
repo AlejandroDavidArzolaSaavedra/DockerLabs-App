@@ -24,23 +24,31 @@
     </script>
 </head>
 
-<header class="position-fixed fixed-top" style="background-color: #10597D; display: flex; align-items: center; gap: 10px; padding: 5px 15px; justify-self: left; width:100%;">
+<style>
+    @media (max-width: 768px) {
+        body {
+            padding-top: 0;
+        }
+    }
+</style>
+
+
+<body style="background-color:#10597D; ">
+
+    
+<header class="position-fixed fixed-top" style="background-color: #10597D; display: flex; align-items: center; gap: 10px; justify-self: left; width:100%;justify-content: flex-start; align-items: flex-start;">
     <div class="logo-container" style="display: flex; align-items: center;">
         <a href="https://dockerlabs.es" target="_blank">
             <img src="https://dockerlabs.es/static/images/logos/logo.png" alt="DockerLabs" width="60" height="55" style="display: block;">
         </a>
-    </div>
-    <h1 style="margin: 0;">
+        <h1 style="margin-left: 20px;">
         <a href="https://ko-fi.com/elpinguinodemario" target="_blank" id="dockerlabs-link"
            style="color: #fff; text-decoration: none;">DockerLabs</a>
     </h1>
+    </div>
 </header>
 
-
-<body style="background-color:#10597D; margin-top: 20px;">
-
-
-    <div class="container">
+    <div class="container" style="padding-top: 100px; width: 100%;">
         <div class="header row">
             <div class="col-xxl-6 ">
                 <input type="text" id="search" class="form-control-sm" placeholder="Busca algo...">
