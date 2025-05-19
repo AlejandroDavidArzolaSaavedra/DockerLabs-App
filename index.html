@@ -12,6 +12,119 @@
     <meta name="google-site-verification" content="G-ZBED41BLPR">
     <title>DockerLabs</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script>
+"use strict";
+
+function Toast(t) {
+    if (!t.message) throw new Error("Toast.js - You need to set a message to display");
+    this.options = t;
+    this.options.type = t.type || "default";
+    this.toastId = "toast-" + Date.now();
+    this._init();
+}
+
+Toast.prototype._createElements = function() {
+    var t = this;
+    return new Promise(function(e, o) {
+        t.toastContainerEl = document.createElement("div");
+        t.toastContainerEl.id = t.toastId;
+        t.toastContainerEl.classList.add("toastjs-container");
+        t.toastContainerEl.setAttribute("role", "alert");
+        t.toastContainerEl.setAttribute("aria-hidden", true);
+        
+        t.toastEl = document.createElement("div");
+        t.toastEl.classList.add("toastjs");
+        t.toastContainerEl.appendChild(t.toastEl);
+        
+        // Añadir al contenedor principal de toasts
+        var container = document.getElementById("toasts-main-container");
+        if (!container) {
+            container = document.createElement("div");
+            container.id = "toasts-main-container";
+            container.style.position = "fixed";
+            container.style.bottom = "20px";
+            container.style.right = "20px";
+            container.style.display = "flex";
+            container.style.flexDirection = "column-reverse";
+            container.style.gap = "10px";
+            container.style.zIndex = "9999";
+            document.body.appendChild(container);
+        }
+        
+        container.prepend(t.toastContainerEl);
+        setTimeout(function() { return e(); }, 100);
+    });
+};
+
+Toast.prototype._addEventListeners = function() {
+    var t = this;
+    document.querySelector("#" + t.toastId + " .toastjs-btn--close").addEventListener("click", function() {
+        t._close();
+    });
+    
+    if (this.options.customButtons) {
+        var e = Array.prototype.slice.call(document.querySelectorAll("#" + t.toastId + " .toastjs-btn--custom"));
+        e.map(function(e, o) {
+            e.addEventListener("click", function(e) {
+                return t.options.customButtons[o].onClick(e);
+            });
+        });
+    }
+};
+
+Toast.prototype._close = function() {
+    var t = this;
+    return new Promise(function(e, o) {
+        t.toastContainerEl.setAttribute("aria-hidden", true);
+        setTimeout(function() {
+            t.toastContainerEl.style.opacity = "0";
+            setTimeout(function() {
+                t.toastContainerEl.remove();
+                t.focusedElBeforeOpen && t.focusedElBeforeOpen.focus();
+                e();
+            }, 300);
+        }, 100);
+    });
+};
+
+Toast.prototype._open = function() {
+    this.toastContainerEl.style.opacity = "1";
+    this.toastEl.classList.add(this.options.type);
+    this.toastContainerEl.setAttribute("aria-hidden", false);
+    
+    var t = "";
+    if (this.options.customButtons) {
+        t = this.options.customButtons.map(function(t, e) {
+            return '<button type="button" class="toastjs-btn toastjs-btn--custom">' + t.text + "</button>";
+        });
+        t = t.join("");
+    }
+    
+    this.toastEl.innerHTML = '\n        <p>' + this.options.message + '</p>\n        <button type="button" class="toastjs-btn toastjs-btn--close">Cerrar</button>\n        ' + t + '\n    ';
+    this.focusedElBeforeOpen = document.activeElement;
+    document.querySelector("#" + this.toastId + " .toastjs-btn--close").focus();
+};
+
+Toast.prototype._init = function() {
+    var t = this;
+    Promise.resolve().then(function() {
+        return t._createElements();
+    }).then(function() {
+        t._open();
+        t._addEventListeners();
+        
+        // Cierre automático si se especifica
+        if (t.options.timeout) {
+            setTimeout(function() {
+                t._close();
+            }, t.options.timeout);
+        }
+    });
+};
+</script>    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -33,39 +146,142 @@
                 const iconoDescripcion = document.createElement('i');
                 iconoDescripcion.className = 'bi bi-file-earmark-text';
                 iconoDescripcion.style.fontSize = '20px';
-
-                // Botón deseado
+                
+                // Botón deseado (estrella)
                 const btnDeseado = document.createElement('button');
+                btnDeseado.className = 'btn-icon star';
                 btnDeseado.innerHTML = '<i class="bi bi-star"></i>';
                 btnDeseado.title = 'Marcar como deseado';
-                btnDeseado.style.border = 'none';
-                btnDeseado.style.background = 'transparent';
-                btnDeseado.style.cursor = 'pointer';
 
                 btnDeseado.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    btnDeseado.classList.toggle('activo');
-                    btnDeseado.innerHTML = btnDeseado.classList.contains('activo') ?
-                        '<i class="bi bi-star-fill" style="color:gold;"></i>' :
-                        '<i class="bi bi-star"></i>';
+                e.stopPropagation();
+                btnDeseado.classList.toggle('activo');
+                btnDeseado.innerHTML = btnDeseado.classList.contains('activo') ?
+                    '<i class="bi bi-star-fill"></i>' :
+                    '<i class="bi bi-star"></i>';
+
+                // Obtener el nombre de la máquina desde <span><strong>...</strong></span>
+                const nombreMaquina = parent.closest('.item')?.querySelector('span strong')?.textContent.trim() || 'Máquina desconocida';
+
+                if (btnDeseado.classList.contains('activo')) {
+                    new Toast({
+                    message: '🌟 La máquina ' + nombreMaquina + ' ha sido marcada como deseada',
+                    type: 'success',
+                    timeout: 3000
+                    });
+                } else {
+                new Toast({
+                message: '❌ La máquina ' + nombreMaquina + ' ha sido marcada como no deseada',
+                type: 'danger',
+                timeout: 3000
                 });
+              }
 
-                // Botón realizado
-                const btnRealizado = document.createElement('button');
-                btnRealizado.innerHTML = '<i class="bi bi-check-circle"></i>';
-                btnRealizado.title = 'Marcar como realizado';
-                btnRealizado.style.border = 'none';
-                btnRealizado.style.background = 'transparent';
-                btnRealizado.style.cursor = 'pointer';
+  // Lluvia de confetti
+  confetti({
+    spread: 360,
+    ticks: 200,
+    gravity: 1,
+    decay: 0.94,
+    startVelocity: 30,
+    particleCount: 80,
+    scalar: 2.5,
+    shapes: ["image"],
+    shapeOptions: {
+      image: [
+        {
+          src: "https://cdn-icons-png.flaticon.com/512/5372/5372572.png",
+          width: 128,
+          height: 128,
+        },
+        {
+          src: "https://cdn-icons-png.flaticon.com/512/5372/5372572.png",
+          width: 128,
+          height: 128,
+        },
+        {
+          src: "https://cdn-icons-png.flaticon.com/512/564/564631.png",
+          width: 128,
+          height: 128,
+        },
+        {
+          src: "https://cdn-icons-png.flaticon.com/512/2165/2165674.png",
+          width: 128,
+          height: 128,
+        },
+        {
+          src: "https://cdn-icons-png.flaticon.com/512/711/711284.png",
+          width: 32,
+          height: 32,
+        },
+      ]
+    },
+  });
+});
 
-                btnRealizado.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    btnRealizado.classList.toggle('activo');
-                    btnRealizado.innerHTML = btnRealizado.classList.contains('activo') ?
-                        '<i class="bi bi-check-circle-fill" style="color:green;"></i>' :
-                        '<i class="bi bi-check-circle"></i>';
-                });
 
+// Botón realizado (check)
+const btnRealizado = document.createElement('button');
+btnRealizado.className = 'btn-icon check';
+btnRealizado.innerHTML = '<i class="bi bi-check-circle"></i>';
+btnRealizado.title = 'Marcar como realizado';
+
+btnRealizado.addEventListener('click', (e) => {
+    e.stopPropagation();
+    btnRealizado.classList.toggle('activo');
+    btnRealizado.innerHTML = btnRealizado.classList.contains('activo') ?
+        '<i class="bi bi-check-circle-fill"></i>' :
+        '<i class="bi bi-check-circle"></i>';
+
+    // Obtener el nombre de la máquina
+    const nombreMaquina = parent.closest('.item')?.querySelector('span strong')?.textContent.trim() || 'Máquina desconocida';
+
+    // Mostrar toast personalizado
+    if (btnRealizado.classList.contains('activo')) {
+        new Toast({
+            message: '✅ La máquina ' + nombreMaquina + ' ha sido marcada como realizada',
+            type: 'success',
+            timeout: 3000
+        });
+    } else {
+        new Toast({
+            message: '❌ La máquina ' + nombreMaquina + ' ha sido marcada como no realizada',
+            type: 'danger',
+            timeout: 3000
+        });
+    }
+
+    // Confetti para acción "Realizado"
+    confetti({
+        spread: 300,
+        ticks: 180,
+        gravity: 0.9,
+        decay: 0.93,
+        startVelocity: 35,
+        particleCount: 60,
+        scalar: 2.2,
+        shapes: ["image"],
+        shapeOptions: {
+            image: [
+                {
+                    src: "https://cdn-icons-png.flaticon.com/512/190/190411.png", // check
+                    width: 128,
+                    height: 128,
+                },
+                {
+                    src: "https://cdn-icons-png.flaticon.com/512/753/753318.png", // done flag
+                    width: 128,
+                    height: 128,
+                },
+                {
+                    src: "https://cdn-icons-png.flaticon.com/512/148/148767.png", // thumbs up
+                    width: 128,
+                    height: 128,
+                }
+            ]
+        },
+    });
+});
                 // Limpiar y reemplazar el botón original
                 button.innerHTML = '';
                 contenedor.appendChild(iconoDescripcion);
@@ -87,8 +303,8 @@
         document.querySelectorAll('div.item strong').forEach(strong => {
             const originalText = strong.textContent.trim();
             
-            if (originalText.length >= 10 && window.innerWidth < 768) {
-                strong.textContent = originalText.slice(0, 4) + '..';
+            if (originalText.length >= 6 && window.innerWidth < 768) {
+                strong.textContent = originalText.slice(0, 6) + '..';
             }
         });
     });
@@ -117,12 +333,12 @@
             <div class="col-xxl-6 ">
                 <input type="text" id="search" class="form-control-sm" placeholder="Busca algo...">
                 </div>
-            <div class="col-xxl-6 right-buttons text-center" id="difficulty-filter">
-                <button id="botonmuyfacil" onclick="botonmuyfacil()">Muy Fácil</button>
-                <button id="botonfacil" onclick="botonfacil()">Fácil</button>
-                <button id="botonmedio" onclick="botonmedio()">Medio</button>
-                <button id="botondificil" onclick="botondificil()">Difícil</button>
-            </div>
+                <div class="col-xxl-6 right-buttons text-center" id="difficulty-filter">
+                    <button id="botonmuyfacil" class="same-width-button" onclick="botonmuyfacil()">Muy Fácil</button>
+                    <button id="botonfacil" class="same-width-button" onclick="botonfacil()">Fácil</button>
+                    <button id="botonmedio" class="same-width-button" onclick="botonmedio()">Medio</button>
+                    <button id="botondificil" class="same-width-button" onclick="botondificil()">Difícil</button>
+                </div>
         </div>
 
         <div class="list">
