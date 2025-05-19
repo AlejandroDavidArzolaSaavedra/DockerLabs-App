@@ -46,13 +46,6 @@ header {
     font-family: 'Fira Code', monospace; 
 }
 
-.header-buttons .left-buttons button {
-    margin-right: 16px; 
-}
-
-.header-buttons .right-buttons button {
-    margin-left: 8px; 
-}
 
 .header-buttons .right-buttons #botonmuyfacil { background: #36797e; }
 .header-buttons .right-buttons #botonfacil { background: #6da52d; }
@@ -214,11 +207,11 @@ header h1 {
 }
 
 .item .badge {
-    padding: 4px 10px;
+    padding: 4px 5px;
     border-radius: 20px;
     font-size: 0.75em;
     color: #fff;
-    font-weight: 500;
+    font-weight: 10;
     width: fit-content;
     text-align: center;
     text-transform: uppercase;
@@ -491,16 +484,15 @@ div.popup h2 {
 }
 
 input#search {
-    max-width: 130px;
+    max-width: 100%;
+    width: 100%;
 }
+
 @media (max-width: 768px) {
     body {
         padding-top:165px;
     }
-    input#search {
-        max-width: 100%;
-        width: 100%;
-    }
+
     header h1 {
         margin-bottom: 10px;
     }
@@ -557,10 +549,12 @@ div.header.row > div > * {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100px;
+    height: 60px;
     background: linear-gradient(to bottom, #0b3c5d, #10597D);
     overflow: hidden;
-    display: flex;
+    padding: 0;
+    margin: 0;
+    flex: 1;
     align-items: start;
     z-index: 999;
     padding-left: 20px;
@@ -572,13 +566,17 @@ div.header.row > div > * {
     display: flex;
     align-items: center;
     z-index: 2;
+    padding: 0;
+    margin: 0;
+    flex: 1;
 }
 
 /* Título estilizado */
 .marine-title {
+    margin: 10px;
     margin-left: 20px;
     font-family: 'Pacifico', cursive;
-    font-size: 28px;
+    font-size: 22px;
     color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
