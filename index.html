@@ -87,7 +87,7 @@
         document.querySelectorAll('div.item strong').forEach(strong => {
             const originalText = strong.textContent.trim();
             
-            if (originalText.length > 10 && window.innerWidth < 768) {
+            if (originalText.length >= 10 && window.innerWidth < 768) {
                 strong.textContent = originalText.slice(0, 4) + '..';
             }
         });
