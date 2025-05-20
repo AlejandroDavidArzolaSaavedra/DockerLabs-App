@@ -321,7 +321,7 @@ btnRealizado.addEventListener('click', (e) => {
             <img src="https://dockerlabs.es/static/images/logos/logo.png" alt="DockerLabs" width="50" height="45">
         </a>
         <h1 class="marine-title">
-            <a href="https://ko-fi.com/elpinguinodemario" target="_blank" id="dockerlabs-link">DockerLabs</a>
+            <a href="https://ko-fi.com/elpinguinodemario" target="_blank" id="dockerlabs-link">DockerLabs2222</a>
         </h1>
     </div>
     <div class="wave3 wave1"></div>
@@ -3206,8 +3206,15 @@ function descripcion(nombre, descripcionTexto) {
 
 <script>
 window.addEventListener('message', function(event) {
+alert('Script cargado correctamente');
   try {
-    const message = JSON.parse(event.data);
+   let message;
+	try {
+	  message = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+	} catch (e) {
+	  console.error("No se pudo parsear el mensaje:", e);
+	  return;
+	}
     
     if (message.type === 'ACTIVE_TAB') {
       console.log('Active tab received:', message.data);
