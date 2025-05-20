@@ -3205,17 +3205,6 @@ function descripcion(nombre, descripcionTexto) {
 
 
 <script>
-window.addEventListener('message', function(event) {
-  try {
-   let message;
-	try {
-	  message = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-	} catch (e) {
-	  console.error("No se pudo parsear el mensaje:", e);
-	  return;
-	}
-    
-  // Variable global para recordar la última pestaña recibida
   let lastActiveTab = null;
 
   window.addEventListener('message', function(event) {
@@ -3230,23 +3219,15 @@ window.addEventListener('message', function(event) {
     }
 
     if (message.type === 'ACTIVE_TAB') {
-      // Si es igual a la anterior, no hacemos nada
       if (message.data === lastActiveTab) {
         console.log('Misma tab, no recargamos:', message.data);
         return;
       }
-	alert("sss")
-      // Guardamos la nueva pestaña
-      lastActiveTab = message.data;
 
+      lastActiveTab = message.data;
       console.log('Active tab received:', message.data);
       alert("Nueva tab recibida: " + message.data);
-      
 
-      // Aquí iría tu lógica de “refresco” o cambio de vista
-      // p.ej. cargar contenido, cambiar clase active, etc.
-
-      // Enviar confirmación de vuelta a React Native
       if (window.ReactNativeWebView) {
         const confirmation = {
           type: 'CONFIRMATION',
@@ -3254,17 +3235,12 @@ window.addEventListener('message', function(event) {
           timestamp: new Date().toISOString()
         };
         window.ReactNativeWebView.postMessage(JSON.stringify(confirmation));
-        window.ReactNativeWebView.postMessage(
-          JSON.stringify(confirmation)
-        );
       }
     }
-  } catch (e) {
-    console.error('Error parsing message from React Native', e);
-  }
-});
   });
 </script>
+
+	
 	
 </body>
 <footer>
