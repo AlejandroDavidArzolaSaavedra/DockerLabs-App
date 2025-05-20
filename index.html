@@ -321,7 +321,7 @@ btnRealizado.addEventListener('click', (e) => {
             <img src="https://dockerlabs.es/static/images/logos/logo.png" alt="DockerLabs" width="50" height="45">
         </a>
         <h1 class="marine-title">
-            <a href="https://ko-fi.com/elpinguinodemario" target="_blank" id="dockerlabs-link">DockerLab3444</a>
+            <a href="https://ko-fi.com/elpinguinodemario" target="_blank" id="dockerlabs-link">DockerLab5555</a>
         </h1>
     </div>
     <div class="wave3 wave1"></div>
@@ -3208,6 +3208,7 @@ function descripcion(nombre, descripcionTexto) {
   let lastActiveTab = null;
 
   window.addEventListener('message', function(event) {
+	  alert("aaaa")
     let message;
     try {
       message = typeof event.data === 'string'
@@ -3223,10 +3224,6 @@ function descripcion(nombre, descripcionTexto) {
         console.log('Misma tab, no recargamos:', message.data);
         return;
       }
-
-      lastActiveTab = message.data;
-      console.log('Active tab received:', message.data);
-      alert("Nueva tab recibida: " + message.data);
 
       if (window.ReactNativeWebView) {
         const confirmation = {
