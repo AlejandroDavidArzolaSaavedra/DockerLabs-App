@@ -3203,6 +3203,18 @@ function descripcion(nombre, descripcionTexto) {
         });
     </script>
 
+
+	<script>
+  // Espera un momento para asegurarte de que se ha cargado la variable
+  setTimeout(() => {
+    if (window.tabFromApp) {
+      alert("Tab recibido desde la app móvil:", window.tabFromApp);
+      // Puedes hacer algo con ese valor aquí
+    }
+  }, 500);
+</script>
+
+	
 </body>
 
 <footer>
