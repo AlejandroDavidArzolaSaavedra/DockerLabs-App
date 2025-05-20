@@ -321,7 +321,7 @@ btnRealizado.addEventListener('click', (e) => {
             <img src="https://dockerlabs.es/static/images/logos/logo.png" alt="DockerLabs" width="50" height="45">
         </a>
         <h1 class="marine-title">
-            <a href="https://ko-fi.com/elpinguinodemario" target="_blank" id="dockerlabs-link">DockerLab5555</a>
+            <a href="https://ko-fi.com/elpinguinodemario" target="_blank" id="dockerlabs-link">DockerLab666</a>
         </h1>
     </div>
     <div class="wave3 wave1"></div>
@@ -3208,7 +3208,6 @@ function descripcion(nombre, descripcionTexto) {
   let lastActiveTab = null;
 
   window.addEventListener('message', function(event) {
-	  alert("aaaa")
     let message;
     try {
       message = typeof event.data === 'string'
@@ -3219,6 +3218,11 @@ function descripcion(nombre, descripcionTexto) {
       return;
     }
 
+	  
+    window.ReactNativeWebView.postMessage(JSON.stringify({
+        Mensaje: message.data,
+    }));
+	  
     if (message.type === 'ACTIVE_TAB') {
       if (message.data === lastActiveTab) {
         console.log('Misma tab, no recargamos:', message.data);
