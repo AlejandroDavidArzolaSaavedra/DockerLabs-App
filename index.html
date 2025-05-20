@@ -163,19 +163,21 @@ Toast.prototype._init = function() {
                 // Obtener el nombre de la máquina desde <span><strong>...</strong></span>
                 const nombreMaquina = parent.closest('.item')?.querySelector('span strong')?.textContent.trim() || 'Máquina desconocida';
 
-                if (btnDeseado.classList.contains('activo')) {
-                    new Toast({
-                    message: '🌟 La máquina ' + nombreMaquina + ' ha sido marcada como deseada',
-                    type: 'success',
-                    timeout: 3000
-                    });
-                } else {
+                const esDeseado = btnDeseado.classList.contains('activo');
+                
                 new Toast({
-                message: '❌ La máquina ' + nombreMaquina + ' ha sido marcada como no deseada',
-                type: 'danger',
-                timeout: 3000
-                });
-              }
+        message: esDeseado ?
+            '🌟 La máquina ' + nombreMaquina + ' ha sido marcada como deseada' :
+            '❌ La máquina ' + nombreMaquina + ' ha sido marcada como no deseada',
+        type: esDeseado ? 'success' : 'danger',
+        timeout: 3000
+    });
+
+    window.ReactNativeWebView?.postMessage(JSON.stringify({
+        type: 'maquina_deseada',
+        nombreMaquina: nombreMaquina,
+        deseado: esDeseado
+    }));
 
   // Lluvia de confetti
   confetti({
@@ -235,21 +237,20 @@ btnRealizado.addEventListener('click', (e) => {
 
     // Obtener el nombre de la máquina
     const nombreMaquina = parent.closest('.item')?.querySelector('span strong')?.textContent.trim() || 'Máquina desconocida';
+    const esRealizado = btnRealizado.classList.contains('activo');
+    new Toast({
+        message: esRealizado ?
+            '✅ La máquina ' + nombreMaquina + ' ha sido marcada como realizada' :
+            '❌ La máquina ' + nombreMaquina + ' ha sido marcada como no realizada',
+        type: esRealizado ? 'success' : 'danger',
+        timeout: 3000
+    });
 
-    // Mostrar toast personalizado
-    if (btnRealizado.classList.contains('activo')) {
-        new Toast({
-            message: '✅ La máquina ' + nombreMaquina + ' ha sido marcada como realizada',
-            type: 'success',
-            timeout: 3000
-        });
-    } else {
-        new Toast({
-            message: '❌ La máquina ' + nombreMaquina + ' ha sido marcada como no realizada',
-            type: 'danger',
-            timeout: 3000
-        });
-    }
+    window.ReactNativeWebView?.postMessage(JSON.stringify({
+        type: 'maquina_realizada',
+        nombreMaquina: nombreMaquina,
+        realizado: esRealizado
+    }));
 
     // Confetti para acción "Realizado"
     confetti({
@@ -304,7 +305,7 @@ btnRealizado.addEventListener('click', (e) => {
             const originalText = strong.textContent.trim();
             
             if (originalText.length >= 6 && window.innerWidth < 768) {
-                strong.textContent = originalText.slice(0, 6) + '..';
+                strong.textContent = originalText.slice(0, 5) + '..';
             }
         });
     });
@@ -2963,7 +2964,7 @@ function botontodos() {
     infoDiv.innerHTML = `
         <p style="font-size: 20px; font-family: Fira Code, Arial, sans-serif;"><strong>Autor:</strong> <a href="${autor_enlace}" target="_blank" style="color: white; text-decoration: none;">${autor_nombre}</a></p>
         <p style="font-size: 20px; font-family: Fira Code, Arial, sans-serif;"><strong>Dificultad:</strong> <span style="background-color: ${color}; padding: 5px; border-radius: 5px;">${dificultad}</span></p>
-        <p style="font-size: 20px; font-family: Fira Code, Arial, sans-serif;"><strong>Fecha de creaciÃ³n:</strong> ${fecha}</p>
+        <p style="font-size: 20px; font-family: Fira Code, Arial, sans-serif;"><strong>Fecha de creación:</strong> ${fecha}</p>
     `;
 
     // AÃ±adir la imagen y la informaciÃ³n al contenedor
@@ -3180,10 +3181,17 @@ function descripcion(nombre, descripcionTexto) {
    
 
         function updateAllButtonCounts() {
-            botonmuyfacil();
+            
             botonfacil();
             botonmedio();
             botondificil();
+            botonmuyfacil();
+            // Cargar todas las maquinas al inicio
+            const items = document.querySelectorAll('.item');
+            items.forEach(item => {
+                item.style.display = 'flex';
+            });
+
         }
 
         document.addEventListener('DOMContentLoaded', () => {
