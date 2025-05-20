@@ -3235,7 +3235,7 @@ window.addEventListener('message', function(event) {
         console.log('Misma tab, no recargamos:', message.data);
         return;
       }
-
+	alert("sss")
       // Guardamos la nueva pestaña
       lastActiveTab = message.data;
 
@@ -3264,21 +3264,6 @@ window.addEventListener('message', function(event) {
   }
 });
   });
-
-// Opcional: Enviar un mensaje cuando la página esté lista
-if (window.ReactNativeWebView) {
-  window.ReactNativeWebView.postMessage(JSON.stringify({
-    type: 'WEBVIEW_READY',
-    message: 'WebView cargado y listo para recibir mensajes'
-  }));
-}
-  // Mensaje de “WebView listo”
-  if (window.ReactNativeWebView) {
-    window.ReactNativeWebView.postMessage(JSON.stringify({
-      type: 'WEBVIEW_READY',
-      message: 'WebView cargado y listo para recibir mensajes'
-    }));
-  }
 </script>
 	
 </body>
