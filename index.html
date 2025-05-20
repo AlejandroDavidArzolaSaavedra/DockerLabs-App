@@ -3205,20 +3205,36 @@ function descripcion(nombre, descripcionTexto) {
 
 
 <script>
-window.addEventListener('message', function(event) {
-  try {
-   let message;
-	try {
-	  message = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-	} catch (e) {
-	  console.error("No se pudo parsear el mensaje:", e);
-	  return;
-	}
-    
+  // Variable global para recordar la última pestaña recibida
+  let lastActiveTab = null;
+
+  window.addEventListener('message', function(event) {
+    let message;
+    try {
+      message = typeof event.data === 'string'
+        ? JSON.parse(event.data)
+        : event.data;
+    } catch (e) {
+      console.error("No se pudo parsear el mensaje:", e);
+      return;
+    }
+
     if (message.type === 'ACTIVE_TAB') {
+      // Si es igual a la anterior, no hacemos nada
+      if (message.data === lastActiveTab) {
+        console.log('Misma tab, no recargamos:', message.data);
+        return;
+      }
+
+      // Guardamos la nueva pestaña
+      lastActiveTab = message.data;
+
       console.log('Active tab received:', message.data);
       alert("Nueva tab recibida: " + message.data);
-      
+
+      // Aquí iría tu lógica de “refresco” o cambio de vista
+      // p.ej. cargar contenido, cambiar clase active, etc.
+
       // Enviar confirmación de vuelta a React Native
       if (window.ReactNativeWebView) {
         const confirmation = {
@@ -3226,23 +3242,21 @@ window.addEventListener('message', function(event) {
           data: message.data,
           timestamp: new Date().toISOString()
         };
-        window.ReactNativeWebView.postMessage(JSON.stringify(confirmation));
+        window.ReactNativeWebView.postMessage(
+          JSON.stringify(confirmation)
+        );
       }
     }
-  } catch (e) {
-    console.error('Error parsing message from React Native', e);
+  });
+
+  // Mensaje de “WebView listo”
+  if (window.ReactNativeWebView) {
+    window.ReactNativeWebView.postMessage(JSON.stringify({
+      type: 'WEBVIEW_READY',
+      message: 'WebView cargado y listo para recibir mensajes'
+    }));
   }
-});
-
-// Opcional: Enviar un mensaje cuando la página esté lista
-if (window.ReactNativeWebView) {
-  window.ReactNativeWebView.postMessage(JSON.stringify({
-    type: 'WEBVIEW_READY',
-    message: 'WebView cargado y listo para recibir mensajes'
-  }));
-}
 </script>
-
 	
 </body>
 <footer>
