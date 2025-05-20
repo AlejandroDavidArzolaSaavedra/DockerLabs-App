@@ -223,6 +223,28 @@ header h1 {
 .item .badge.medio     { background: #f0a43c; }
 .item .badge.dificil   { background: #e74c3c; }
 
+.badge.muy-facil::before {
+  content: "M. Fácil";
+}
+.badge.muy-facil {
+  color: transparent;
+  position: relative;
+}
+.badge.muy-facil::before {
+  color: white; /* o el color que desees */
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+
+  left: 0;
+  top: 0;
+}
+
+
 .actions.icon-container {
     display: flex;
     gap: 10px;
