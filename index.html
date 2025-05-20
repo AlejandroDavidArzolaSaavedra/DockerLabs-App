@@ -321,7 +321,7 @@ btnRealizado.addEventListener('click', (e) => {
             <img src="https://dockerlabs.es/static/images/logos/logo.png" alt="DockerLabs" width="50" height="45">
         </a>
         <h1 class="marine-title">
-            <a href="https://ko-fi.com/elpinguinodemario" target="_blank" id="dockerlabs-link">DockerLab333333</a>
+            <a href="https://ko-fi.com/elpinguinodemario" target="_blank" id="dockerlabs-link">DockerLab3444</a>
         </h1>
     </div>
     <div class="wave3 wave1"></div>
@@ -3205,50 +3205,6 @@ function descripcion(nombre, descripcionTexto) {
 
 
 <script>
-  // Variable global para recordar la última pestaña recibida
-  let lastActiveTab = null;
-
-  window.addEventListener('message', function(event) {
-    let message;
-    try {
-      message = typeof event.data === 'string'
-        ? JSON.parse(event.data)
-        : event.data;
-    } catch (e) {
-      console.error("No se pudo parsear el mensaje:", e);
-      return;
-    }
-
-    if (message.type === 'ACTIVE_TAB') {
-      // Si es igual a la anterior, no hacemos nada
-      if (message.data === lastActiveTab) {
-        console.log('Misma tab, no recargamos:', message.data);
-        return;
-      }
-
-      // Guardamos la nueva pestaña
-      lastActiveTab = message.data;
-
-      console.log('Active tab received:', message.data);
-      alert("Nueva tab recibida: " + message.data);
-
-      // Aquí iría tu lógica de “refresco” o cambio de vista
-      // p.ej. cargar contenido, cambiar clase active, etc.
-
-      // Enviar confirmación de vuelta a React Native
-      if (window.ReactNativeWebView) {
-        const confirmation = {
-          type: 'CONFIRMATION',
-          data: message.data,
-          timestamp: new Date().toISOString()
-        };
-        window.ReactNativeWebView.postMessage(
-          JSON.stringify(confirmation)
-        );
-      }
-    }
-  });
-
   // Mensaje de “WebView listo”
   if (window.ReactNativeWebView) {
     window.ReactNativeWebView.postMessage(JSON.stringify({
