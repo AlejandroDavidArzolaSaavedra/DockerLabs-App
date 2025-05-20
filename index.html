@@ -3205,13 +3205,19 @@ function descripcion(nombre, descripcionTexto) {
 
 
 	<script>
-  // Espera un momento para asegurarte de que se ha cargado la variable
-  setTimeout(() => {
-    if (window.tabFromApp) {
-      alert("Tab recibido desde la app móvil:", window.tabFromApp);
-      // Puedes hacer algo con ese valor aquí
+window.addEventListener('message', function(event) {
+  try {
+    const message = JSON.parse(event.data);
+    if (message.type === 'ACTIVE_TAB') {
+      console.log('Active tab received:', message.data);
+      // Aquí puedes hacer lo que necesites con el activeTab
+	alert("Nueva tab")
+      // Por ejemplo, actualizar la UI o hacer alguna lógica específica
     }
-  }, 500);
+  } catch (e) {
+    console.error('Error parsing message from React Native', e);
+  }
+});
 </script>
 
 	
